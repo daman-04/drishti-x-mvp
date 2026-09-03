@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+backend-ai/venv/
+backend-ai/env/
+__pycache__/
+*.pyc
+*/__pycache__/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Database
+backend-ai/*.db
+backend-ai/*.sqlite3
+
+# Env vars
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db

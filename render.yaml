@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: drishti-backend
+    env: docker
+    dockerContext: backend-ai
+    dockerfilePath: backend-ai/Dockerfile
+    plan: free
+    healthCheckPath: /api/v1/cameras
+
+  - type: web
+    name: drishti-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: drishti-backend
+          envVarKey: RENDER_EXTERNAL_URL

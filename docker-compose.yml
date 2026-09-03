@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend-ai:
+    build:
+      context: ./backend-ai
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend-ai:/app
+    # If running on a system with NVIDIA GPU, uncomment the below section
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend-ai

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+websockets
+python-multipart
+sqlalchemy
+ultralytics
+opencv-python-headless
+pydantic
+pydantic-settings
+asyncio
